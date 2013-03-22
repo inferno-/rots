@@ -5,8 +5,8 @@ server provides an easy to use interface to make testing OpenID consumers really
 
 == No more mocks
 
-Have you always wanted to test the authentication of an OpenID consumer implementation, but find your self 
-in a point where is to hard to mock? A lot of people have been there. 
+Have you always wanted to test the authentication of an OpenID consumer implementation, but find your self
+in a point where is to hard to mock? A lot of people have been there.
 
 With ROTS, you only need to specify an identity url provided by the dummy server, passing with it a flag
 saying that you want the authentication to be successful. It handles SREG extensions as well.
@@ -14,9 +14,9 @@ saying that you want the authentication to be successful. It handles SREG extens
 == How does it works
 
 When you install the ROTS gem, a binary called rots is provided for starting the server (for more
-info about what options you have when executing this file, check the -h option). 
+info about what options you have when executing this file, check the -h option).
 
-By default, rots will have a test user called "John Doe", with an OpenID identity "john.doe". 
+By default, rots will have a test user called "John Doe", with an OpenID identity "john.doe".
 If you want to use your own test user name, you can specify a config file to rots. The
 default configuration file looks like this:
 
@@ -28,12 +28,18 @@ sreg:
   email: jhon@doe.com
   dob: 1985-09-21
   gender: M
+ax:
+  http://axschema.org/contact/email: jhon@doe.com
+  http://axschema.org/namePerson/first: John
+  http://axschema.org/namePerson/last: Doe
+  http://axschema.org/company/name: CorporateX
+
 
 You can specify a new config file using the option --config.
 
 == Getting Started
 
-The best way to get started, is running the rots server, and then starting to execute your OpenID consumer tests/specs. You just have to specify the identity url of your test user, if you want the OpenID response be successful just add the openid.success=true flag to the user identity url. If you don't specify the flag it 
+The best way to get started, is running the rots server, and then starting to execute your OpenID consumer tests/specs. You just have to specify the identity url of your test user, if you want the OpenID response be successful just add the openid.success=true flag to the user identity url. If you don't specify the flag it
 will return a cancel response instead.
 
 Example:
@@ -59,6 +65,6 @@ all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
+THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
