@@ -21,49 +21,54 @@ sreg:
   email: jhon@doe.com
   dob: 1985-09-21
   gender: M
+ax:
+  http://axschema.org/contact/email: jhon@doe.com
+  http://axschema.org/namePerson/first: John
+  http://axschema.org/namePerson/last: Doe
+  http://axschema.org/company/name: CorporateX
 
   DEFAULT_CONFIG
 }
 
 opts = OptionParser.new do |opts|
   opts.banner = "Usage: rots [options]"
-  
+
   opts.separator ""
   opts.separator "Options:"
-  
+
   opts.on("-p", "--port PORT",
             "use PORT (default: 1123)") do |port|
     server_options[:port] = port
   end
-  
+
   opts.on("-s", "--storage PATH",
             "use PATH as the OpenID Server storage path (default: ./tmp/rots)") do |storage_path|
     server_options[:storage] = storage_path
   end
-  
+
   opts.on("-c", "--config FILE.yaml",
             "server configuration YAML file") do |config_path|
     abort "\x1B[31mConfiguration file #{config_path} not found\x1B[0m" unless File.exists?(config_path)
     server_options[:config] = File.new(config_path)
   end
-  
+
   opts.on("-s", "--silent",
-            "If specified, the server will be in silent mode") do 
+            "If specified, the server will be in silent mode") do
     server_options[:verbose] = false
   end
-  
+
   opts.on("-d", "--debugger") do
     server_options[:debugger] = true
   end
-  
+
   opts.separator ""
   opts.separator "Common options:"
-  
+
   opts.on_tail("-h", "--help", "Show this help message") do
     puts opts
     exit
   end
-  
+
 end
 
 opts.parse!(ARGV)
@@ -72,7 +77,7 @@ config = YAML.load(server_options[:config])
 
 require "ruby-debug" if server_options[:debugger]
 
-server = Rack::Builder.new do 
+server = Rack::Builder.new do
   use Rack::Lint
   if server_options[:verbose]
     use Rack::CommonLogger, STDOUT
@@ -87,7 +92,7 @@ server = Rack::Builder.new do
 end
 
 puts "\x1B[32mRunning OpenID Test server on port 1123\x1B[0m" if server_options[:verbose]
-begin 
+begin
   Rack::Handler::Mongrel.run server, :Port => server_options[:port]
 rescue LoadError
   Rack::Handler::WEBrick.run server, :Port => server_options[:port]
