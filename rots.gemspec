@@ -12,7 +12,7 @@ With this small server, you can make dummy OpenID request for testing purposes,
 the success of the response will depend on a parameter given on the url of the authentication request.
   EOF
 
-  s.files           = ["AUTHORS", "README", "Rakefile", "bin/rots", "lib/rots.rb", "lib/rots/identity_page_app.rb", "lib/rots/server_app.rb", "lib/rots/test_helper.rb","rots.gemspec", "spec/server_app_spec.rb", "spec/spec_helper.rb"] 
+  s.files           = ["AUTHORS", "README", "Rakefile", "bin/rots", "lib/rots.rb", "lib/rots/identity_page_app.rb", "lib/rots/server_app.rb", "lib/rots/test_helper.rb","rots.gemspec", "spec/server_app_spec.rb", "spec/spec_helper.rb"]
   s.bindir          = 'bin'
   s.executables     << 'rots'
   s.require_path    = 'lib'
@@ -28,4 +28,5 @@ the success of the response will depend on a parameter given on the url of the a
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rack'
   s.add_development_dependency 'ruby-openid'
+  s.add_development_dependency 'signal'
 end
